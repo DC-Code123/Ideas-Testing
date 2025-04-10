@@ -1,0 +1,10 @@
+Operation of the app
+1.Add tasks
+2.View tasks
+3.Mark tasks as done
+4.View marked tasks
+5.View all tasks
+6.Delete a task
+7.
+8.
+9.
