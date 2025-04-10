@@ -5,6 +5,13 @@ Operation of the app
 4.View marked tasks
 5.View all tasks
 6.Delete a task
-7.
-8.
-9.
+7.Exit
+Things the program will do:
+-2 vectors(Done tasks, Pending tasks)
+-Functions: for -Outputting
+		-Adding a task
+		-Viewing tasks
+		-Marking a task as done then shifting it to a different 		group
+		-Viewing done tasks
+		-Viewing all tasks
+		-Deleting a task
