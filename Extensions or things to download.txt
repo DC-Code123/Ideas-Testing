@@ -1,0 +1,26 @@
+
+WEBSITES OF IMPORTANCE:
+-Smartdraw(Flowchart maker)
+-HakerRank(Question generator)
+-Todoist(TaskManager)
+-LinkedIn(For Connections)
+
+EXTENSIONS ON VSCODE:
+-Bracket Pair Color DLW: Bracket Pair Color DLW
+-C/C++ extension pack: Microsoft
+-GitHub Copilot: GitHub
+-GitHub Copilot chat: GitHub
+-Material Theme (Pale night High Contrast): Material Theme
+-Material Theme Icons: Material Theme
+
+APPS TO USE:
+-GitHub Copilot(For saving files online on GitHub.com)+Git
+-Code::Blocks(For compiling C++)
+-Doxygen (Documentation generator)
+-VSCode (Of course)
+
+OTHER
+-SourceCodePro(Font for programming) From fontsquirrel.com
+
+GAMES
+-ProjectZomboid from https://gogunlocked.com/project-zomboid-free-download/
