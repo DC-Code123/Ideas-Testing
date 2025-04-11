@@ -140,8 +140,11 @@ void ViewDone(const vector<Task>& doneTasks) {
   }
 
   cout << "Completed Tasks:\n";
-  for (size_t i = 0; i < doneTasks.size(); ++i) {
-    cout << i + 1 << ". " << doneTasks[i].name << "\n";
+  for (size_t i = 0; i < pendingTasks.size(); ++i) {
+    cout << "Task number: " << i + 1 << '\n';
+    cout << "Name: " << pendingTasks[i].name << "\n";
+    cout << "State: " << pendingTasks[i].state << "\n";
+    cout << "Finishedness: " << pendingTasks[i].finishedness << "\n";
   }
 }
 
