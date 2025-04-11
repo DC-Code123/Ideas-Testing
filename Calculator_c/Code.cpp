@@ -3,35 +3,35 @@
 #include <string>
 #include <sstream>
 #include <cmath>
-#include <limits> // For precise comparisons
+#include <limits> // For precise comparisons and handling large/small values
 
 using namespace std;
 
-// Addition function
+// Function to add two numbers
 int add(int x, int y) {
   return x + y;
 }
 
-// Subtraction function
+// Function to subtract second number from first
 int sub(int x, int y) {
   return x - y;
 }
 
-// Multiplication function
+// Function to multiply two numbers
 int multi(int x, int y) {
   return x * y;
 }
 
-// Division function with error check
-int div(int x, int y) {
-  if (y == 0) {
+// Function to divide two numbers with error checking
+int mydiv(int x, int y) {
+  if (y == 0) { // Check for division by zero
     cout << "Error: Division by zero is not allowed." << endl;
-    return 0; // Prevent crash
+    return 0;
   }
   return x / y;
 }
 
-// String output for division results (with quotient and remainder)
+// Function to print the result of division with quotient and remainder
 string div_print(int x, int y) {
   if (y == 0) {
     return "Error: Division by zero is not allowed.";
@@ -44,39 +44,31 @@ string div_print(int x, int y) {
   return ss.str();
 }
 
-// This function calculates the nth root of a number using Newton-Raphson method
+// Function to calculate the nth root using Newton-Raphson method
+// This is a numerical approach to approximate roots
 double nthRoot(double value, int n, double tolerance = 1e-10, int maxIterations = 1000) {
-  // Error check: Even root of negative numbers is invalid (e.g., √-16 is imaginary)
   if (value < 0 && n % 2 == 0) {
     throw invalid_argument("Even root of negative number is not real.");
   }
-
-  // Error check: n must be a positive number
   if (n <= 0) {
     throw invalid_argument("Root must be a positive integer.");
   }
 
-  // Initial guess for root (a reasonable starting point)
-  double x = value / n;
+  double x = value / n; // Starting guess for root
 
-  // Loop to improve the guess using Newton's formula
   for (int i = 0; i < maxIterations; ++i) {
-    double prev = x; // Save current guess
-    // Newton-Raphson formula to update the guess
-    x = ((n - 1) * x + value / pow(x, n - 1)) / n;
-
-    // If the guess is close enough to the actual root, stop
-    if (abs(x - prev) < tolerance) break;
+    double prev = x; // Store previous guess
+    x = ((n - 1) * x + value / pow(x, n - 1)) / n; // Update guess using formula
+    if (abs(x - prev) < tolerance) break; // Stop if the guess is accurate enough
   }
 
-  return x; // Return the final guess (very close to the real root)
+  return x; // Return the final result
 }
 
-// Handles basic operations: +, -, *, /
+// Function to handle basic operations: +, -, *, /
 int Basic_ops() {
-  cout << "Welcome to the basic operations section!" << endl;
-  cout << "Which operation do you want to perform?" << endl;
-  cout << "Addition (A), Subtraction (S), Multiplication (M), Division (D): ";
+  cout << "\n--- Basic Operations ---" << endl;
+  cout << "Choose operation: Addition (A), Subtraction (S), Multiplication (M), Division (D): ";
   char op;
   cin >> op;
 
@@ -86,103 +78,75 @@ int Basic_ops() {
   cout << "Enter second number: ";
   cin >> y;
 
-  // Decision based on chosen operation
+  // Check and perform selected operation
   if (op == 'a' || op == 'A') {
-    cout << "The sum of " << x << " and " << y << " is: " << add(x, y) << endl;
+    cout << "Result: " << x << " + " << y << " = " << add(x, y) << endl;
   } else if (op == 's' || op == 'S') {
-    cout << "The difference of " << x << " and " << y << " is: " << sub(x, y) << endl;
+    cout << "Result: " << x << " - " << y << " = " << sub(x, y) << endl;
   } else if (op == 'm' || op == 'M') {
-    cout << "The product of " << x << " and " << y << " is: " << multi(x, y) << endl;
+    cout << "Result: " << x << " * " << y << " = " << multi(x, y) << endl;
   } else if (op == 'd' || op == 'D') {
-    cout << div_print(x, y) << endl;
+    cout << div_print(x, y) << endl; // Uses the division result string function
   } else {
-    cout << "Invalid operation" << endl;
+    cout << "Invalid operation choice." << endl;
   }
   return 0;
 }
 
-// Handles additional operations: Power and Root
+// Function to handle additional operations: power and root
 int AdditionalOps() {
   char op;
   int x, y;
   double result;
 
-  cout << "Welcome to the additional operations section!\n";
-  cout << "Which operation do you want to perform?\n";
-  cout << "Exponentiation(E)/Powering(P) or Rooting(R): ";
+  cout << "\n--- Additional Operations ---" << endl;
+  cout << "Choose operation: Powering (P) or Rooting (R): ";
   cin >> op;
 
-  // POWER OPERATION
   if (op == 'e' || op == 'E' || op == 'p' || op == 'P') {
-    cout << "What is the base?: ";
+    cout << "Enter base: ";
     cin >> x;
-    cout << "What is the exponent?: ";
+    cout << "Enter exponent: ";
     cin >> y;
-
-    result = pow(x, y); // Built-in power function
-    cout << "\nThe result of " << x << "^" << y << " is " << result << endl;
-
-  // ROOT OPERATION
+    result = pow(x, y); // Standard library function for power
+    cout << "Result: " << x << "^" << y << " = " << result << endl;
   } else if (op == 'r' || op == 'R') {
-    cout << "What number is being rooted? (Ex: √16): ";
+    cout << "Enter the number to be rooted: ";
     cin >> x;
-
-    cout << "What is the index (Ex: 2 for square root, 3 for cube root, etc.): ";
+    cout << "Enter the index of the root (e.g., 2 for square root): ";
     cin >> y;
-
     try {
-      result = nthRoot(x, y); // Call our custom root function
-      cout << "The root result of " << y << "√" << x << " is " << result << endl;
+      result = nthRoot(x, y); // Use custom root function
+      cout << "Result: " << y << "√" << x << " = " << result << endl;
     } catch (const exception& e) {
-      // Catch and display errors like negative root issues
-      cout << "Error: " << e.what() << endl;
+      cout << "Error: " << e.what() << endl; // Display error message
     }
-
   } else {
-    cout << "Invalid operation choice." << endl;
+    cout << "Invalid additional operation choice." << endl;
   }
-
   return 0;
 }
 
-// Main menu to select between basic and additional operations
+// Main function - shows main menu and loops until user exits
 int main() {
-  cout << "Welcome to the specialized calculator!" << endl;
-  cout << "It has 2 sections: Basic and Additional." << endl;
-  cout << "Do you want to perform basic operations or additional operations? (B=Basic, A=Additional): ";
-  char BasicFunction;
-  cin >> BasicFunction;
+  while (true) { // Infinite loop until user chooses to exit
+    cout << "\n===== Specialized Calculator =====" << endl;
+    cout << "Choose operation type:" << endl;
+    cout << "(B)asic, (A)dditional, or (E)xit: ";
 
-  if (BasicFunction == 'b' || BasicFunction == 'B') {
-    Basic_ops();
+    char choice;
+    cin >> choice;
 
-    // Ask user if they also want to do additional operations
-    cout << "Do you want to also perform additional operations? (yes=y, no=n): ";
-    char AdditionalFunction;
-    cin >> AdditionalFunction;
-    if (AdditionalFunction == 'y' || AdditionalFunction == 'Y') {
-      AdditionalOps();
+    if (choice == 'b' || choice == 'B') {
+      Basic_ops(); // Call basic operations menu
+    } else if (choice == 'a' || choice == 'A') {
+      AdditionalOps(); // Call additional operations menu
+    } else if (choice == 'e' || choice == 'E') {
+      cout << "Exiting calculator. Goodbye!" << endl;
+      break; // Exit the loop and end program
     } else {
-      cout << "Thank you for using the specialized calculator!" << endl;
+      cout << "Invalid input. Please enter B, A, or E." << endl;
     }
-
-  } else if (BasicFunction == 'a' || BasicFunction == 'A') {
-    AdditionalOps();
-
-    // Ask user if they also want to do basic operations
-    cout << "Do you want to also perform basic operations? (yes=y, no=n): ";
-    char BasicRepeat;
-    cin >> BasicRepeat;
-    if (BasicRepeat == 'y' || BasicRepeat == 'Y') {
-      Basic_ops();
-    } else {
-      cout << "Thank you for using the specialized calculator!" << endl;
-    }
-
-  } else {
-    // Catch invalid menu selection
-    cout << "Invalid input. Please enter 'B' for basic or 'A' for additional operations." << endl;
   }
-
   return 0;
 }
